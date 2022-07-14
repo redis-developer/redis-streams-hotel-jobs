@@ -1,0 +1,19 @@
+{
+  "name": "consumer_group",
+  "version": "0.0.1",
+  "description": "Redis Streams Consumer Group Example",
+  "main": "consumer_group.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Redis",
+    "Streams"
+  ],
+  "type": "module",
+  "author": "Redis Developer",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^4.2.0"
+  }
+}
