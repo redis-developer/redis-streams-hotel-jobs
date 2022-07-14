@@ -5,7 +5,7 @@ if (process.argv.length !== 3) {
   process.exit(1);
 }
 
-function randomSleep(howLong) {
+function randomSleep() {
   return new Promise((resolve) => {
     const howLong = Math.floor(Math.random() * (8000 - 3000) + 3000);
     setTimeout(resolve, howLong);
