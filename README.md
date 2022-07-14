@@ -1,4 +1,14 @@
-# TODO
+# Redis Streams Hotel Jobs Example with Node.js and Python
+
+TODO
+
+## Redis
+
+TODO
+
+## Optional, but Recommended: RedisInsight
+
+TODO
 
 ## The Producer
 
