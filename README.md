@@ -12,6 +12,8 @@ TODO
 
 ## The Producer
 
+The producer is written in Python, using the [redis-py](https://github.com/Redis/redis-py) Redis client.  You'll need Python 3 for this, it's been tested with Python 3.9.13.
+
 ### Setup
 
 TODO
