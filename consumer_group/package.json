@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Redis Streams Consumer Group Example",
   "main": "consumer_group.js",
+  "engines": {
+    "node": ">=14.8"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +18,13 @@
   "license": "MIT",
   "dependencies": {
     "redis": "^4.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redis-developer/redis-streams-hotel-jobs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redis-developer/redis-streams-hotel-jobs/issues"
+  },
+  "homepage": "https://github.com/redis-developer/redis-streams-hotel-jobs#readme"
 }
