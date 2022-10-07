@@ -1,0 +1,26 @@
+ports:
+  - port: 8001
+    onOpen: open-preview
+
+tasks:
+  - name: Start First Terminal
+    init: |
+      docker-compose pull
+      cd consumer_group
+      npm install
+      cd ../producer
+      pip install -r requirements.txt
+    command: |
+      docker-compose up -d      
+      gp sync-done finished
+    openMode: split-left
+  - name: Start Second Terminal
+    init: |
+      cd consumer
+      pip install -r requirements.txt
+    openMode: split-right
+
+vscode:
+  extensions:
+    - ms-python.python
+      
