@@ -24,4 +24,4 @@ while True:
     print(f"Created job {job_id}:")
     print(job)
 
-    time.sleep(random.randint(5, 15))
+    time.sleep(random.randint(5, 10))
