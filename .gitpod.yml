@@ -13,11 +13,14 @@ tasks:
     command: |
       docker-compose up -d      
       gp sync-done finished
+      clear
     openMode: split-left
   - name: Start Second Terminal
     init: |
       cd consumer
       pip install -r requirements.txt
+    command: |
+      clear
     openMode: split-right
 
 vscode:
