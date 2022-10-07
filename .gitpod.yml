@@ -1,6 +1,6 @@
 ports:
   - port: 8001
-    onOpen: open-preview
+    onOpen: open-browser
   - port: 6379
     onOpen: ignore
 
