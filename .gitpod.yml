@@ -24,4 +24,8 @@ tasks:
     command: |
       clear
     openMode: split-right
+
+vscode:
+  extensions:
+    - ms-python.python
       
