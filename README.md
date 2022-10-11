@@ -44,6 +44,7 @@ To use this option, you'll need the following software installed:
 * Git (to clone the repository from GitHub).
 * Python 3 (to run the Producer component).  I've tested this on Python 3.9, but it should work with Python 3.8 or higher.
 * Node.js (to run the Consumer component).  I've tested this with Node.js version 16, but it should work with Node.js version 14.8 or higher.
+* A modern web browser (Google Chrome, Mozilla Firefox, Apple Safari).  I've tested this workshop using Google Chrome for macOS on macOS Monterey.
 
 ### Clone this Repository from GitHub
 
@@ -106,7 +107,15 @@ To stop the Producer, press Ctrl+C.
 
 ### Watching the Stream with RedisInsight
 
-TODO
+Using your browser, navigate to `http://localhost:8001`.  Accept the terms and conditions to use RedisInsight.
+
+You should now see the RedisInsight key browser view, showing one key whose type is `STREAM` and whose name is `jobs`.  Click on the text `jobs` to open up the key viewer for this Stream.
+
+To the right, you should now see a panel showing the contents of the Stream.  Turn on the auto refresh option for this panel, and set the refresh rate to 2 seconds as shown:
+
+![RedisInsight showing a Stream](redisinsight_auto_refresh.png)
+
+You should now see the Stream entries that the Producer component is creating as they're added to the Stream.
 
 ### Running the Consumer Component
 
