@@ -10,6 +10,30 @@ In this workshop, we look at using a Redis Stream to manage requests from coming
 
 ## Option 1: Run on GitPod in the Cloud
 
+To use this option, you'll need the following software installed:
+
+* A modern web browser (Google Chrome, Mozilla Firefox, Apple Safari).  I've tested this workshop using Google Chrome for macOS on macOS Monterey.
+
+You'll also need a GitHub account to sign into GitPod with.
+
+### Start a GitPod Environment
+
+TODO
+
+### Running the Producer Component
+
+TODO
+
+### Watching the Stream with RedisInsight
+
+TODO
+
+### Running the Consumer Component
+
+TODO
+
+### Running the Consumer Group Components
+
 TODO
 
 ## Option 2: Run Locally
@@ -79,6 +103,10 @@ Created job 1665474082937-0:
 ```
 
 To stop the Producer, press Ctrl+C.
+
+### Watching the Stream with RedisInsight
+
+TODO
 
 ### Running the Consumer Component
 
