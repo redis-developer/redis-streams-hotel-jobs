@@ -4,7 +4,7 @@
 
 This repository contains the code and Docker Compose file for my Redis Streams workshop.  To see a video presentation of this workshop, get the slides and other resources, [click here](https://simonprickett.dev/redis-streams-workshop/).
 
-There are two ways to try out the code.  If you want to run everythig in the cloud and don't want to install anything on your machine, use option 1 (GitPod hosted environment).  If you're comfortable using Docker and have appropriate versions of Python 3 and Node.js installed on your machine you could use option 2 (Run Locally).
+There are two ways to try out the code.  If you want to run everything in the cloud and don't want to install anything on your machine, use option 1 (GitPod hosted environment).  If you're comfortable using Docker and have appropriate versions of Python 3 and Node.js installed on your machine you could use option 2 (Run Locally).
 
 In this workshop, we look at using a Redis Stream to manage requests from coming in from guests staying in rooms at a hotel.
 
