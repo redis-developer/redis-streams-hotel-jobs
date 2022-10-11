@@ -36,6 +36,10 @@ TODO
 
 TODO
 
+### Watching the Consumer Group Status with RedisInsight
+
+TODO
+
 ## Option 2: Run Locally
 
 To use this option, you'll need the following software installed:
@@ -203,3 +207,7 @@ node consumer_group.js consumer2
 This second instance should also read jobs and acknowledge them.  The first and second instances will each be allocated jobs by Redis, and will always be allocated different jobs so that they can process the Stream collaboratively.
 
 To stop the Consumer Group Consumer, press Ctrl+C.
+
+#### Watching the Consumer Group Status with RedisInsight
+
+TODO
