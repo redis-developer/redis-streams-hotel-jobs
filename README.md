@@ -1,47 +1,168 @@
 # Redis Streams Hotel Jobs Example with Node.js and Python
 
-TODO
+## Overview
 
-## Redis
+This repository contains the code and Docker Compose file for my Redis Streams workshop.  To see a video presentation of this workshop, get the slides and other resources, [click here](https://simonprickett.dev/redis-streams-workshop/).
 
-TODO
+There are two ways to try out the code.  If you want to run everythig in the cloud and don't want to install anything on your machine, use option 1 (GitPod hosted environment).  If you're comfortable using Docker and have appropriate versions of Python 3 and Node.js installed on your machine you could use option 2 (Run Locally).
 
-## Optional, but Recommended: RedisInsight
+In this workshop, we look at using a Redis Stream to manage requests from coming in from guests staying in rooms at a hotel.
 
-TODO
-
-## The Producer
-
-The producer is written in Python, using the [redis-py](https://github.com/Redis/redis-py) Redis client.  You'll need Python 3 for this, it's been tested with Python 3.9.13.
-
-### Setup
+## Option 1: Run on GitPod in the Cloud
 
 TODO
 
-### Start the Producer
+## Option 2: Run Locally
 
-TODO
+To use this option, you'll need the following software installed:
 
-## The Consumer
+* Docker Desktop (for the `docker-compose` command).
+* Git (to clone the repository from GitHub).
+* Python 3 (to run the Producer component).  I've tested this on Python 3.9, but it should work with Python 3.8 or higher.
+* Node.js (to run the Consumer component).  I've tested this with Node.js version 16, but it should work with Node.js version 14.8 or higher.
 
-The consumer is also written in Python, using the [redis-py](https://github.com/Redis/redis-py) Redis client.  You'll need Python 3 for this, it's been tested with Python 3.9.13.
+### Clone this Repository from GitHub
 
-### Setup
+Clone this repository to your local machine then use the `cd` command to enter the folder that's created for you:
 
-TODO
+```
+git clone https://github.com/redis-developer/redis-streams-hotel-jobs.git
+cd redis-streams-hotel-jobs
+```
 
-### Start the Consumer
+### Starting Redis and RedisInsight
 
-TODO
+Before starting Redis, make sure that you don't have anything running on ports 6379 or 8001.  Use Docker Compose to start Redis and RedisInsight:
 
-## Consumer Groups
+```
+docker-compose up -d
+```
 
-The consumer group consumer is written in Node.js, using the [node-redis](https://github.com/Redis/node-redis) Redis client.  You'll need Node.js 14.8 or higher for this, it's been tested with Node.js 16.5.1.
+Using your browser, navigate to `http://localhost:8001` - you should see RedisInsight.  Accept the terms and conditions, then RedisInsight should connect to your new Redis instance that is running on port 6379.
 
-### Setup
+When you've finished working with the code, stop Redis and RedisInsight like this:
 
-TODO
+```
+docker-compose down
+```
 
-### Start Multiple Consumers as a Consumer Group
+### Running the Producer Component
 
-TODO
+The Producer is written in Python, using the [redis-py](https://github.com/Redis/redis-py) Redis client.
+
+#### Setup
+
+Before running the Producer, create and activate a virtual environment then install the requirements:
+
+```
+cd producer
+python3 -m venv venv
+. ./venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### Start the Producer
+
+Now, start the Producer like this:
+
+```
+python producer.py
+```
+
+Every few seconds, it should create a new job, print out the job details and add it to the Redis Stream:
+
+```
+Created job 1665474073919-0:
+{'room': 341, 'job': 'taxi'}
+Created job 1665474082937-0:
+{'room': 281, 'job': 'extra_pillows'}
+```
+
+To stop the Producer, press Ctrl+C.
+
+### Running the Consumer Component
+
+The Consumer is also written in Python, using the [redis-py](https://github.com/Redis/redis-py) Redis client. 
+
+#### Setup
+
+Before running the Consumer, create and activate a virtual environment then install the requirements:
+
+```
+cd consumer
+python3 -m venv venv
+. ./venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### Start the Consumer
+
+Now, start the Consumer like this:
+
+```
+python consumer.py
+```
+
+You should see the Consumer read jobs from the Redis Stream and print out their details:
+
+```
+Checking for jobs...
+[['jobs', [('1665474846052-0', {'room': '363', 'job': 'extra_towels'})]]]
+['jobs', [('1665474846052-0', {'room': '363', 'job': 'extra_towels'})]]
+Performing job 1665474846052-0: {'room': '363', 'job': 'extra_towels'}
+Checking for jobs...
+[['jobs', [('1665474852065-0', {'room': '209', 'job': 'taxi'})]]]
+['jobs', [('1665474852065-0', {'room': '209', 'job': 'taxi'})]]
+Performing job 1665474852065-0: {'room': '209', 'job': 'taxi'}
+```
+
+To stop the Consumer, press Ctrl+C.
+
+### Running the Consumer Group Consumers
+
+The consumer group consumer is written in Node.js, using the [node-redis](https://github.com/Redis/node-redis) Redis client.
+
+#### Setup
+
+Before running the Consumer Group Consumers, install the dependencies:
+
+```
+cd consumer_group
+npm install
+```
+
+#### Start the First Consumer Group Consumer Instance
+
+Start the first instance of the Consumer Group Consumer like this:
+
+```
+node consumer_group.js consumer1
+```
+
+The Consumer Group Consumer should read jobs and acknowledge receipt of them:
+
+```
+Starting consumer consumer1.
+Created consumer group.
+[{"name":"jobs","messages":[{"id":"1665474846052-0","message":{"room":"363","job":"extra_towels"}}]}]
+Performing job 1665474846052-0: {"room":"363","job":"extra_towels"}
+Acknowledged processing of job 1665474846052-0
+[{"name":"jobs","messages":[{"id":"1665474852065-0","message":{"room":"209","job":"taxi"}}]}]
+Performing job 1665474852065-0: {"room":"209","job":"taxi"}
+Acknowledged processing of job 1665474852065-0
+```
+
+To stop the Consumer Group Consumer, press Ctrl+C.
+
+#### Start the Second Consumer Group Consumer Instance
+
+In a different terminal session, start a second instance of the Consumer Group Consumer like this:
+
+```
+cd consumer_group
+node consumer_group.js consumer2
+```
+
+This second instance should also read jobs and acknowledge them.  The first and second instances will each be allocated jobs by Redis, and will always be allocated different jobs so that they can process the Stream collaboratively.
+
+To stop the Consumer Group Consumer, press Ctrl+C.
