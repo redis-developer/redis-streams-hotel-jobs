@@ -210,4 +210,10 @@ To stop the Consumer Group Consumer, press Ctrl+C.
 
 #### Watching the Consumer Group Status with RedisInsight
 
-TODO
+With the Producer and at least one instance of the Consumer Group Consumer running, start RedisInsight (`http://localhost:8001`).  Click on the "jobs" stream key, then the "Consumer Groups" tab.  Turn on the auto refresh and click on the "staff" Consumer Group:
+
+![RedisInsight Consumer Groups](redisinsight_consumer_groups.png)
+
+You should now see the state of each member of the "staff" Consumer Group:
+
+![RedisInsight staff Consumer Group](redisinsight_consumer_group_consumers.png)
