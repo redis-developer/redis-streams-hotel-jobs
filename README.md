@@ -18,19 +18,77 @@ You'll also need a GitHub account to sign into GitPod with.
 
 ### Start a GitPod Environment
 
-TODO
+GitPod provides hosted development environments in the cloud.  To start an environment with the code for this workshop plus a Redis instance and the RedisInsight tool, simply click here:
+
+TODO https://gitpod.io/#github.com/redis-developer/redis-streams-hotel-jobs
+
+You will need to authorize GitPod to work with your GitHub account.  
+
+Allow the GitPod environment a few moments to configure itself, start Redis and install the project dependencies.  These tasks are performed automatically for you.
+
+When it's ready, your environment will look like this:
+
+![GitPod Initial View](gitpod_initial.png)
+
+Close the VSCode welcome tab(s), and accept the terms and conditions for RedisInsight.  Your workspace should now look like this:
+
+![GitPod Ready View](gitpod_ready.png)
+
+Turn on the Auto Refresh control in RedisInsight:
+
+![GitPod RedisInsight Auto Refresh](gitpod_redisinsight_auto_refresh.png)
+
+You're now ready to start running code!
 
 ### Running the Producer Component
 
-TODO
+Start the Producer component by typing the following command into the LEFT SIDE terminal window:
+
+```
+python producer.py
+```
+
+You should see the Producer creating new jobs every few seconds:
+
+```
+Created job 1665557648430-0:
+{'room': 218, 'job': 'cleaning'}
+Created job 1665557657440-0:
+{'room': 420, 'job': 'taxi'}
+```
+
+You can stop the Producer at any point using Ctrl+C.  Leave it running for now.
 
 ### Watching the Stream with RedisInsight
 
-TODO
+Notice that a key named "jobs" appeared in RedisInsight, and that it is of type "STREAM".  Click on this key name to view the contents of the stream.  Turn on the auto refresh control for the contents to see them update as the Producer adds new jobs to the stream:
+
+![GitPod RedisInsight Watching Producer](gitpod_redisinsight_watch_producer.png)
+
+You may want to click the arrow icon in the top right corner to open RedisInsight in its own browser tab to give it more room.
 
 ### Running the Consumer Component
 
-TODO
+Start the Consumer component by entering the following command into the RIGHT SIDE terminal window:
+
+```
+python consumer.py
+```
+
+You should see the Consumer reading jobs from the stream and printing the details of each one:
+
+```
+Checking for jobs...
+[['jobs', [('1665557648430-0', {'room': '218', 'job': 'cleaning'})]]]
+['jobs', [('1665557648430-0', {'room': '218', 'job': 'cleaning'})]]
+Performing job 1665557648430-0: {'room': '218', 'job': 'cleaning'}
+Checking for jobs...
+[['jobs', [('1665557657440-0', {'room': '420', 'job': 'taxi'})]]]
+['jobs', [('1665557657440-0', {'room': '420', 'job': 'taxi'})]]
+Performing job 1665557657440-0: {'room': '420', 'job': 'taxi'}
+```
+
+When you are done looking at this, stop the Consumer using Ctrl+C.
 
 ### Running the Consumer Group Components
 
