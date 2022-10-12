@@ -20,7 +20,7 @@ You'll also need a GitHub account to sign into GitPod with.
 
 GitPod provides hosted development environments in the cloud.  To start an environment with the code for this workshop plus a Redis instance and the RedisInsight tool, simply click here:
 
-TODO https://gitpod.io/#github.com/redis-developer/redis-streams-hotel-jobs
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/redis-developer/redis-streams-hotel-jobs)
 
 You will need to authorize GitPod to work with your GitHub account.  
 
