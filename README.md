@@ -92,11 +92,46 @@ When you are done looking at this, stop the Consumer using Ctrl+C.
 
 ### Running the Consumer Group Components
 
-TODO
+First, use Ctrl+C to stop the Producer and Consumer components if they're still running.
+
+Now, enter the following commands in the LEFT SIDE terminal:
+
+```
+cd ../consumer_group
+node consumer_group.js consumer1
+```
+
+Next, enter the following commands in the RIGHT SIDE terminal:
+
+```
+cd ../consumer_group
+node consumer_group.js consumer2
+```
+
+Each Consumer Group Consumer should be allocated jobs and display their details, then acknolwedge receipe of the job with Redis:
+
+```
+Starting consumer consumer1.
+Created consumer group.
+[{"name":"jobs","messages":[{"id":"1665474846052-0","message":{"room":"363","job":"extra_towels"}}]}]
+Performing job 1665474846052-0: {"room":"363","job":"extra_towels"}
+Acknowledged processing of job 1665474846052-0
+[{"name":"jobs","messages":[{"id":"1665474852065-0","message":{"room":"209","job":"taxi"}}]}]
+Performing job 1665474852065-0: {"room":"209","job":"taxi"}
+Acknowledged processing of job 1665474852065-0
+```
+
+To stop the Consumer Group Consumers, use Ctrl+C.  Leave them running for now.
 
 ### Watching the Consumer Group Status with RedisInsight
 
-TODO
+With the Producer and at least one instance of the Consumer Group Consumer running, we can watch what's happening with RedisInsight.  Click on the "jobs" stream key, then the "Consumer Groups" tab.  Turn on the auto refresh and click on the "staff" Consumer Group:
+
+![RedisInsight Consumer Groups](gitpod_redisinsight_consumer_groups.png)
+
+You should now see the state of each member of the "staff" Consumer Group:
+
+![RedisInsight staff Consumer Group](gitpod_redisinsight_consumer_group_consumers.png)
 
 ## Option 2: Run Locally
 
