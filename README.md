@@ -8,6 +8,8 @@ There are two ways to try out the code.  If you want to run everything in the cl
 
 In this workshop, we look at using a Redis Stream to manage requests from coming in from guests staying in rooms at a hotel.
 
+Want to learn more about Redis Streams?  Take the [RU202: Redis Streams course](https://university.redis.com/courses/ru202/) at Redis University.  It's online, and free!
+
 ## Option 1: Run on GitPod in the Cloud
 
 To use this option, you'll need the following software installed:
